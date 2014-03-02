@@ -1,15 +1,50 @@
 Pod::Spec.new do |s|
   s.name         = "Miruken"
   s.version      = "0.0.1"
-  s.summary      = "An iOS application framework"
+  s.summary      = "A Cocoa application framework."
   s.homepage     = "https://github.com/cneuwirt/MirukenCocoa"
   s.author       = { "Craig Neuwirt" => "cneuwirt@gmail.com" }
   s.source       = { :git => "https://github.com/cneuwirt/MirukenCocoa.git", :tag => "#{s.version}" }
-  s.license      = 'MIT'
-  s.description  = "Miruken is an Objective-C application framework"
-  s.requires_arc = true
+  s.license      = 'MIT'  
   s.platform     = :ios, '5.0'
+  s.requires_arc = true
 
-  s.source_files = 'Miruken/**/*.{d,h,m}'
-  s.dependency 'libextobjc' 
+  s.subspec 'Core' do |sp|
+    sp.source_files = "Miruken/*.{h,m}"
+    sp.dependency 'libextobjc' 
+  end
+
+  subspecs_names = %w[
+    Cocoa
+    Context
+    Callbacks
+    Concurrency
+    Error
+    Validation
+    SideEffects ]
+
+  subspec_dependencies = {
+    'Cocoa'       => ['Miruken/Context'],
+    'Context'     => ['Miruken/Callbacks'],
+    'Callbacks'   => ['Miruken/Concurrency'],
+    'Error'       => ['Miruken/Cocoa'],
+    'Validation'  => ['Miruken/Context'],
+    'SideEffects' => ['Miruken/Context']
+  }
+
+  subspecs_names.each do |name|
+    s.subspec name do |sp|
+      sp.source_files = "Miruken/#{name}/*.{h,m}"
+      deps = subspec_dependencies[name] || []
+      sp.dependency 'Miruken/Core'
+      deps.each do |dep|
+        sp.dependency dep
+      end
+    end
+  end
+
+  s.description  = <<-DESC
+                    The Miruken framework offers compositional capabilities to the application design comparable to those found in the Cocoa framework for user interface design.
+                   DESC
+
 end
