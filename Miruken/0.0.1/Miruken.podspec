@@ -1,11 +1,11 @@
 Pod::Spec.new do |s|
   s.name         = "Miruken"
   s.version      = "0.0.1"
-  s.summary      = "A Cocoa application framework."
+  s.summary      = "An application framework that embraces composition and convention to enhance the Cocoa development stack.""
   s.homepage     = "https://github.com/cneuwirt/MirukenCocoa"
   s.author       = { "Craig Neuwirt" => "cneuwirt@gmail.com" }
   s.source       = { :git => "https://github.com/cneuwirt/MirukenCocoa.git", :tag => "#{s.version}" }
-  s.license      = 'MIT'  
+  s.license      = 'MIT'  ≈ß
   s.platform     = :ios, '5.0'
   s.requires_arc = true
 
@@ -44,7 +44,7 @@ Pod::Spec.new do |s|
   end
 
   s.description  = <<-DESC
-                    The Miruken framework offers compositional capabilities to the application design comparable to those found in the Cocoa framework for user interface design.
+Inversion of Control is the principle that separates a framework from an api.  The iOS SDK provides a rich set of functionality in the form of frameworks and lower level apis.  However, the SDK is missing the glue to seamlessly integrate these components.  This often results in unnecessary and undesirable coupling and complexity.  Miruken leverages the dynamic capabilities of objective-c to fill this missing layer an expose the features of the SDK in a clear and consistent manner.
                    DESC
 
 end
