@@ -1,17 +1,17 @@
 Pod::Spec.new do |s|
   s.name         = "Miruken"
   s.version      = "0.0.1"
-  s.summary      = "An application framework that embraces composition and convention to enhance the Cocoa development stack.""
+  s.summary      = "An application framework that embraces composition and convention to enhance the Cocoa development stack."
   s.homepage     = "https://github.com/cneuwirt/MirukenCocoa"
   s.author       = { "Craig Neuwirt" => "cneuwirt@gmail.com" }
   s.source       = { :git => "https://github.com/cneuwirt/MirukenCocoa.git", :tag => "#{s.version}" }
-  s.license      = 'MIT'  ≈ß
-  s.platform     = :ios, '5.0'
+  s.license      = 'MIT' 
+  s.platform     = :ios, '7.0'
   s.requires_arc = true
 
   s.subspec 'Core' do |sp|
     sp.source_files = "Miruken/*.{h,m}"
-    sp.dependency 'libextobjc' 
+    sp.dependency 'NSDate-Additions' 
   end
 
   subspecs_names = %w[
@@ -29,7 +29,7 @@ Pod::Spec.new do |s|
     'Callbacks'   => ['Miruken/Concurrency'],
     'Error'       => ['Miruken/Cocoa'],
     'Validation'  => ['Miruken/Context'],
-    'SideEffects' => ['Miruken/Context']
+    'SideEffects' => ['Miruken/Cocoa']
   }
 
   subspecs_names.each do |name|
